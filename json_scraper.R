@@ -24,8 +24,11 @@ for (j in 1 : nrow(scrape_me)) {
   #t <- get_pbp_from_website('https://www.google.com')
   
   if (!is.null(t)) {
-    json <- as.character(t) %>%
-      jsonlite::fromJSON(flatten = T)
+    tryCatch({
+      json <- as.character(t) %>%
+        jsonlite::fromJSON(flatten = T)
+
+    }, error = function(e){cat("ERROR :",conditionMessage(e), "\n")})
     
     season = game$season
     week = game$week
@@ -40,12 +43,15 @@ for (j in 1 : nrow(scrape_me)) {
     jsonlite::write_json(json, glue::glue('raw/{season}/{season}_{formatC(week, width=2, flag=\"0\")}_{away}_{home}.json'))
     system(glue::glue('gzip raw/{season}/{season}_{formatC(week, width=2, flag=\"0\")}_{away}_{home}.json'))
     
+    message(glue::glue('Found a game ({season}/w{week}/{away}/{home}). Here is a play: {json$data$viewer$gameDetail$plays$playDescriptionWithJerseyNumbers[3]}'))
+    
     system('rm -r /home/ben/.seleniumwire/storage-*')
     
-    message(glue::glue('Found a game ({season}/w{week}/{away}/{home}). Here is a play: {json$data$viewer$gameDetail$plays$playDescriptionWithJerseyNumbers[3]}'))
   } else {
-    message('Nothing found for this game')
+    message(glue::glue('Nothing found for this game: {game$url}'))
   }
+  
+  
 }
 tictoc::toc()
 
@@ -53,6 +59,7 @@ tictoc::toc()
 #clean up when you're done
 #prevents errors in future, hopefully
 system('killall chromedriver')
+system('')
 
 ###################################
 ###### push to github #############
