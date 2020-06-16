@@ -1,14 +1,14 @@
 # nflfastR-data
-NFL play-by-play data scraped from the [`nflfastR` package](https://github.com/mrcaseb/nflfastR) going back to 2000. Each season contains both regular season and postseason data, with game_type denoting which.
+NFL play-by-play data scraped from the [`nflfastR` package](https://github.com/mrcaseb/nflfastR) going back to 1999. Each season contains both regular season and postseason data, with `game_type` or `week` denoting which.
 
-Data are stored in the data folder, available as either compressed csv (.csv.gz) or .rds.
+Data are stored in the data folder, available as either compressed csv (.csv.gz) .rds, or .parquet.
 
 **Note that the data come from two separate sources and all player IDs are inconsistent across the old (1999 - 2010) and new (2011 onward) formats.**
 
 ___
 
 ### Load data using R
-We highly recommend loading the data in the binary .rds format. The following example shows how to load the seasons 2010 to 2019 (binded into a single dataframe) as well as rosters (from 2000 to latest season):
+We highly recommend loading the data in the binary .rds format. The following example shows how to load the seasons 2010 to 2019 (binded into a single dataframe).
 
 ```R
 # define which seasons shall be loaded
@@ -21,7 +21,6 @@ pbp <- purrr::map_df(seasons, function(x) {
   )
 })
 
-roster <- readRDS(url("https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/roster-data/roster.rds"))
 ```
 
 However, if you want to load the compressed csv data run this:
@@ -34,7 +33,6 @@ pbp <- purrr::map_df(seasons, function(x) {
   )
 })
 
-roster <- readr::read_csv("https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/roster-data/roster.csv.gz")
 ```
 
 ___
@@ -61,7 +59,5 @@ for i in YEARS:
 
 #Give each row a unique index
 data.reset_index(drop=True, inplace=True)
-    
-roster = pd.read_csv('https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/' \ 
-                     'roster-data/roster.csv.gz', compression='gzip', low_memory=False)
+
 ```
