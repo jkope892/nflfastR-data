@@ -65,6 +65,9 @@ you’re never going to be doing this again.
 install.packages("tidyverse")
 install.packages("ggrepel")
 install.packages("ggimage")
+
+#needed to install `nflfastR`
+install.packages("devtools")
 devtools::install_github("mrcaseb/nflfastR")
 ```
 
