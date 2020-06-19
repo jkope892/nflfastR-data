@@ -175,7 +175,7 @@ Okay, we have a big dataset where we call dropbacks pass plays and non-dropbacks
 
 ### Group by and Summarize
 
-Let's take a look at how various Cowboys' running backs fared on run plays in 2018:
+Let's take a look at how various Cowboys' running backs fared on run plays in 2019:
 
 ``` {r}
 pbp_rp %>%

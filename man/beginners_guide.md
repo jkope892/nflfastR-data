@@ -648,7 +648,7 @@ non-dropbacks rush plays. Now we actually want to, like, do stuff.
 ### Group by and Summarize
 
 Let’s take a look at how various Cowboys’ running backs fared on run
-plays in 2018:
+plays in 2019:
 
 ``` r
 pbp_rp %>%
