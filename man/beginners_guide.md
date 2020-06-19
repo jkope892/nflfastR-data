@@ -1806,8 +1806,8 @@ there’s a heavy dose of `mutate`, `group_by`, `arrange`, `lag`,
 
 ### Other code examples: Python
 
-  - [Deryck97: nflscrapR Python
-    Guide](https://gist.github.com/Deryck97/fa4abc0e66b77922634be9f51f9a1052)
+  - [Deryck97: nflfastR Python
+    Guide](https://gist.github.com/Deryck97/dff8d33e9f841568201a2a0d5519ac5e)
   - [Cory Jez: animated
     plot](https://github.com/jezlax/sports_analytics/blob/master/animated_nfl_scatter.py)
   - [903124S: Sampling
