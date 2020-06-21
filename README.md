@@ -8,7 +8,7 @@ Data are stored in the data folder, available as either compressed csv (.csv.gz)
 ___
 
 ### Load data using R
-We highly recommend loading the data in the binary .rds format. The following example shows how to load the seasons 2010 to 2019 (binded into a single dataframe).
+If you're using R, you might as well load the data in the binary .rds format. The following example shows how to load the seasons 2010 to 2019 (binded into a single dataframe).
 
 ```R
 # define which seasons shall be loaded
@@ -32,7 +32,18 @@ pbp <- purrr::map_df(seasons, function(x) {
     glue::glue("https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/data/play_by_play_{x}.csv.gz")
   )
 })
+```
 
+Or you can read .parquet like this:
+```R
+# define which seasons shall be loaded
+seasons <- 2010:2019
+purrr::map_df(seasons, function(x) {
+  download.file(glue::glue("https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/data/play_by_play_{x}.parquet"), "tmp.parquet")
+  df <- arrow::read_parquet("tmp.parquet")
+  return(df)
+}
+)
 ```
 
 ___
